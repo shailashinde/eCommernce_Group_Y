@@ -6,50 +6,65 @@ import java.sql.ResultSet;
 import java.util.Scanner;
 
 import LunchPackage.TestMain;
+import admin.Login;
 import product.ConnectionTest;
+import product.Product;
+import product.SelectProduct;
 
 public class UserLogin {
 	
 	PreparedStatement ps = null;
 	Connection con = null;
+	int userChoice;
 	
-	int status=0;
-	//adminLogin() Method
-	public int userLogin() {
-		Scanner sc = new Scanner(System.in);
-		try {
-			
-			System.out.println();
-			System.out.println("   @ Login Frist @");
-			System.out.println("Enter Your User Name >>");
-			String uname= sc.next();
-			System.out.println("Enter Your Password >>");
-			String upwd=sc.next();
-			new User(uname, upwd);
-		//create object ConnectionTest Class
-		ConnectionTest connectionTest = new ConnectionTest();
-		con=connectionTest.getConnectionDemo();
-		 //create prepareStatment 
+	
 		
-		ps=con.prepareStatement("select uname,upwd from user where uname=uname and upwd=upwd ");
-		ResultSet rs=ps.executeQuery();
-		System.out.println(rs);
-		if(rs.next()){
-			String username= rs.getString(1);
-			String pwd=rs.getString(2);
-			System.out.println(username+ ""+ pwd);
-			status=1;
-		}
-		}catch (Exception e) {
-			e.printStackTrace();	
-		}	
-		return status;
-
-	}
+	public void userLogin() {
+		Scanner sc = new Scanner(System.in);
+		
+		do {
+			System.out.println("1. Existing User ");
+			System.out.println("2. New User");
+			System.out.println();
+			System.out.println("Enter the Your Choice.... >> ");
+			userChoice=sc.nextInt();
+						switch(userChoice)
+						{
+						case 1:// Existing user
+							
+							System.out.println();
+							Login login = new Login();
+							int status= login.userLogin();
 	
-	 public static void main(String[] args) {
-		UserLogin ul=new UserLogin();
-		ul.userLogin();
+							if(status==1)
+							{
+							 System.out.println("valid"); 
+							  UserTask userTask= new UserTask();
+							  userTask.userTask();
+							}else {
+								System.out.println("invalid");
+							}		
+								break;
+						case 2:// New User
+								CreateUser cuser = new CreateUser();
+								int status1=cuser.userRegistration();
+								if(status1==1) {
+									UserTask usertask = new UserTask();
+									usertask.userTask();
+								}else {
+									System.out.println("Invalid Input");
+								}
+								break;
+						default:
+							System.out.println("---------------------------------------------");
+							System.out.println("please enter valid choice");
+							break;
+							}
+					System.out.println("do you want to continue(y/n)");
+					userChoice=sc.next().charAt(0);	
+			}while((userChoice=='y' || userChoice=='Y') ||  (userChoice=='n' && userChoice=='N'));
+		System.out.println("Thanks you User....!");
+		
+		
 	} 
-
-}
+	}

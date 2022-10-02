@@ -29,10 +29,7 @@ public class InsertProduct {
 			
 			int pid=1;
 			new Product(pid,pname, pdescription, pprice, pqty);
-			//calling insertProduct() 
-			//InsertProduct iproudct = new InsertProduct();
-			//iproudct.insertProduct(pname, pdescription, pprice, pqty);
-	
+			 
 			//create object ConnectionTest Class
 			ConnectionTest connectionTest = new ConnectionTest();
 			con=connectionTest.getConnectionDemo();

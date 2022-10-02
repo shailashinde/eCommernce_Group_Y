@@ -9,14 +9,9 @@ public class CreateUser {
 
 	PreparedStatement ps = null;
 	Connection con = null;
-	//String uname;
-			// String upwd;
-			// String uemail;
-			// String uphone;
-			// String uaddress;
-	
+	int i;
 	 //user registration method
-	public void userRegistration() {
+	public int userRegistration() {
 		
 		Scanner sc = new Scanner(System.in);
 		try {
@@ -46,14 +41,14 @@ public class CreateUser {
 		 ps.setString(4, uphone);
 		 ps.setString(5, uaddress);
 		 
-		 int i=ps.executeUpdate();
+		 i=ps.executeUpdate();
 		 System.out.println("Record is inserted successfully.." + i);		 
 		}catch (Exception e) {
 			e.printStackTrace();	
 		}	finally {
 			//sc.close();
 		} 
-		
+		return i;
 	}
 
 }
