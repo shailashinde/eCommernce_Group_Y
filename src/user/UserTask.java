@@ -3,6 +3,7 @@ package user;
 import java.util.Scanner;
 
 import cart.InsertCartItem;
+import cart.SelectCartItem;
 import product.InsertProduct;
 import product.SelectProduct;
 import product.UpdateProduct;
@@ -30,13 +31,14 @@ public class UserTask {
 					p.selectProduct();
 					break;
 			case 2://Add to Cart 
-					SelectProduct pp=new  SelectProduct();
-					pp.selectProduct();
+						SelectProduct pp=new  SelectProduct();
+						pp.selectProduct();
 						InsertCartItem ici= new InsertCartItem();
 						ici.insertcartItem();	
-					break;
+						break;
 			case 3://View Cart 
-				
+						SelectCartItem s= new SelectCartItem();
+						s.selectCart();
 					break;
 			default:
 						System.out.println("---------------------------------------------");

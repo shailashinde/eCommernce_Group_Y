@@ -49,8 +49,16 @@ public class UserLogin {
 								CreateUser cuser = new CreateUser();
 								int status1=cuser.userRegistration();
 								if(status1==1) {
-									UserTask usertask = new UserTask();
-									usertask.userTask();
+									Login login1 = new Login();
+									int status11= login1.userLogin();
+									if(status11==1)
+									{
+									 System.out.println("valid"); 
+									  UserTask userTask= new UserTask();
+									  userTask.userTask();
+									}else {
+										System.out.println("invalid");
+									}	
 								}else {
 									System.out.println("Invalid Input");
 								}
@@ -67,4 +75,10 @@ public class UserLogin {
 		
 		
 	} 
+	
+	
+	public static void main(String[] args) {
+		UserLogin u= new UserLogin();
+		u.userLogin();
+	}
 	}

@@ -4,6 +4,11 @@ public class Product {
 	
 	//e-commerce  product	pid	 pname	 pdescription   pprice  	pqty
 	
+	@Override
+	public String toString() {
+		return "Product [pid=" + pid + ", pname=" + pname + ", pdescription=" + pdescription + ", pprice=" + pprice
+				+ ", pqty=" + pqty + "]";
+	}
 	private int pid;
 	private String pname;
 	private String pdescription;
@@ -19,6 +24,10 @@ public class Product {
 		
 	}
 	
+	public Product() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getPid() {
 		return pid;
 	}

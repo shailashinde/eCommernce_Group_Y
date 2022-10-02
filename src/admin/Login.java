@@ -11,6 +11,7 @@ public class Login {
 	Connection con;
 	PreparedStatement ps;
 	int status=0;
+	public static int userId;
 	
 		public int adminLogin() {
 				try {
@@ -63,13 +64,13 @@ public class Login {
 					ConnectionTest connectionTest = new ConnectionTest();
 					con=connectionTest.getConnectionDemo();
 					//create prepareStatment 
-					ps=con.prepareStatement("select uname from user where uname=? and upwd=?" );
+					ps=con.prepareStatement("select uid from user where uname=? and upwd=?" );
 					ps.setString(1, uname);
 					ps.setString(2, upwd);
 					ResultSet rs=ps.executeQuery();
 					
 					if(rs.next()){
-						//System.out.println(rs.getString(1));
+						userId=rs.getInt(1);
 						 status=1;
 					}//end if
 					
@@ -78,4 +79,6 @@ public class Login {
 			}//end catch
 					return status;
 	}//end method
+			
+		
 }//end class
